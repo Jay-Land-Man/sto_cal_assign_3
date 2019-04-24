@@ -1,0 +1,64 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsthm} 
+\usepackage{mdframed}
+\usepackage{parskip}
+
+\newcommand\myeq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily DCT}}}{=}}}
+
+ 
+\title{Stochastic Calculus in Finance\\
+		\large Exercise Sheet 5} 
+\author{Jayson Landman}
+\begin{document}
+	\section*{Question 9}
+	 
+	 \begin{enumerate} [label = \textbf{\alph*)}]
+		\item If $\frac{d\nu}{d\mu}$ and $\frac{d\eta}{d\nu}$ exist then $\eta \ll \nu \ll \mu$. For any $A \subseteq \Omega$ we have:
+		\begin{align*}
+			\mu(I_A fg) & = \int_A fg \; d\mu \\
+			& = \int_A \frac{d\nu}{d\mu} g \; d\mu \tag{$f = \frac{d\nu}{d\mu}$}\\
+			& = \int_A g \; d\nu \\
+			& = \int_A \frac{d\eta}{d\nu} \; d\nu \tag{$g = \frac{d\eta}{d\nu}$} \\
+			& = \int_A 1 \; d\eta \\
+			& = \eta(I_A)
+		\end{align*}
+		But notice that $\eta \ll \mu$. So we also have 
+		\begin{align*}
+			\mu(I_A f') & = \int_A f' \; d\mu \\
+			& = \int_A \frac{d\eta}{d\mu}  \; d\mu \tag{$f' = \frac{d\eta}{d\mu}$}\\
+			& = \int_A 1 \; d\eta \\
+			& = \eta(I_A)
+		\end{align*}
+		$\mu(I_A\frac{d\eta}{d\nu}\frac{d\nu}{d\mu}) = \mu(I_A\frac{d\eta}{d\mu})$	$\mu$-almost everywhere. 
+		\begin{align*}
+			\frac{d\eta}{d\mu} & = \frac{d\eta}{d\nu}\frac{d\nu}{d\mu} \tag{$\mu$-almost everywhere}  
+		\end{align*}
+		\textbf{Need to check with prof that this is an almost everywhere result}
+		\newpage
+		\item Existence of $\frac{d\nu}{d\mu} \rightarrow \nu \ll \mu$. Therefore $\mu(A) = 0 \rightarrow \nu(A) = 0.$ \newline
+		If $\frac{d\nu}{d\mu} > 0 \; \; \mu$-a.e. then $\nu(A) = 0 \rightarrow \mu(A) = 0$ and $\mu \ll \nu$. \newline $\nu$ and $\mu$ are equivalent measures.
+		
+		For any $A \subseteq \Omega$
+		\begin{align*}
+			\mu(I_A fg) & = \int_A fg \; d\mu \\
+			& = \int_A \frac{d\nu}{d\mu} g \; d\mu \tag{$f = \frac{d\nu}{d\mu}$}\\
+			& = \int_A g \; d\nu \\
+			& = \int_A \frac{d\mu}{d\nu} \; d\nu \tag{$g = \frac{d\mu}{d\nu}$} \\
+			& = \int_A 1 \; d\mu \\
+			& = \mu(I_A)
+		\end{align*}
+		
+		$\mu(I_A) = \mu(\frac{d\mu}{d\nu}\frac{d\nu}{d\mu}I_A)$	$\mu$-almost everywhere. \newline This implies that $\frac{d\mu}{d\nu}\frac{d\nu}{d\mu}$ is the same as the ghost function of $1$ under $\mu$. 
+		\begin{align*}
+			\frac{d\mu}{d\nu}\frac{d\nu}{d\mu} & = 1 \tag{$\mu$-almost everywhere} \\		
+			\frac{d\mu}{d\nu}\frac{d\nu}{d\mu}(\frac{d\nu}{d\mu})^{-1} & = (\frac{d\nu}{d\mu})^{-1}  \tag{$\mu$-almost everywhere} \\					
+				\frac{d\mu}{d\nu} & = \frac{1}{\frac{d\nu}{d\mu}} \tag{$\mu$-almost everywhere} 
+		\end{align*}
+		
+	\end{enumerate}
+
+\end{document}

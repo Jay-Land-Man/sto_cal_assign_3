@@ -1,0 +1,118 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsthm} 
+\usepackage{mdframed}
+\usepackage{parskip}
+
+\newcommand\myeq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily DCT}}}{=}}}
+
+ 
+\title{Stochastic Calculus in Finance\\
+		\large Exercise Sheet 5} 
+\author{Jayson Landman}
+\begin{document}
+	\section*{Question 6}
+	 
+	 
+	 \textbf{Need to make correction here}
+	\begin{enumerate} [label = \textbf{\alph*)}]
+	\item $\bar{f} : \mathbb{R} \rightarrow \mathbb{R}$ is a Borel function if the measure space is a Borel measure space and $\bar{f}$ is $\mathcal{B}(\mathbb{R})/\mathcal{B}(\mathbb{R})$-measurable. This requires that: \newline $\{a \in \mathbb{R} : \bar{f}(a) \in B \}  = \bar{f}^{-1}[B] \in \mathcal{B}(\mathbb{R}) \; \; \; \forall B \in \mathcal{B}(\mathbb{R})$.
+
+	\vspace{0.3cm}
+	$\bar{f} = \mathbb{E}[f(x, Y)] = \int f(x, y) \mathbb{P}_Y (dy)$ \newline
+	By Fubini we have: \begin{align*}
+		& \int \int f(x, y) d\mathbb{P}_Y (dy) \mathbb{P}_X (dx) \\
+		& = \int \mathbb{E}[f(x, Y)] \mathbb{P}_X (dx) \\
+		& = \int \bar{f}(x) \;\mathbb{P}_x (dx) \\
+		& < \infty \tag{$f$ is a bounded function}
+	\end{align*}
+	This shows that $\bar{f}$ is an $\mathcal{L}^1$ function and therefore a Borel function.
+	
+	\item  $$\mathcal{H} = \bigg\{ f : (\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2)) \xrightarrow{f}(\mathbb{R}, \mathcal{B}(\mathbb{R})) \wedge \mathbb{E}[f(X, Y)|\mathcal{G}]=\mathbb{E}[f(X, Y)] \bigg \}$$
+	
+	We are required to show that $\mathcal{H}$ is closed under addition and scalar multiplication.
+	
+	\begin{enumerate} [label = \roman*)]
+		\item for $f, g \in \mathcal{H}$ we have: \newline
+		$h = f(B_1\times B_2)+g(B_1\times B_2) = x +y$ for $x, y \in \mathbb{R}$ and $B_1, B_2 \in \mathcal{B}(\mathbb{R})$. \newline Which is just a mapping $h : (\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2)) \rightarrow (\mathbb{R}, \mathcal{B}(\mathbb{R}))$. \newline
+		So it suffices to show that $\mathbb{E}[h|\mathcal{G}] = \mathbb{E}[h]$ 
+\begin{align*}
+	\mathbb{E}[f + g|\mathcal{G}] & = \mathbb{E}[f|\mathcal{G}] + \mathbb{E}[g|\mathcal{G}] \\
+	& = \mathbb{E}[f] + \mathbb{E}[g] \\ 
+	& = \mathbb{E}[f + g] \\
+	& = \mathbb{E}[h]
+\end{align*}
+
+		Therefore $h \in \mathcal{H}$
+
+		\item for $\alpha \in \mathbb{R}$: \newline
+		$h = \alpha\cdot f(B_1 \times	B_2) = \alpha \times x \; \; \; $ where $\alpha, x \in \mathbb{R}$.  \newline Which is just a mapping $h :(\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2)) \rightarrow (\mathbb{R}, \mathcal{B}(\mathbb{R}))$. 
+		
+		$\mathbb{E}[h|\mathcal{G}] = \mathbb{E}[\alpha \cdot f|\mathcal{G}] = \alpha \times \mathbb{E}[f|\mathcal{G}] = \alpha \mathbb{E}[f] = \mathbb{E}[\alpha \cdot f] =\mathbb{E}[h]$
+		
+		Therefore $h \in \mathcal{H}$
+	\end{enumerate}
+	
+	We have shown $\mathcal{H}$ is a vector space.
+	
+	\item	 \begin{align*}
+			f(B_1 \times B_2) & = h(B_1)\times k(B_2) \tag{$B_1, B_2 \in \mathcal{B}(\mathbb{R})$} \\
+			& = x \times y \tag{$x, y \in \mathbb{R}$}\\
+			& = c \tag{$c \in \mathbb{R}$}
+		\end{align*}
+		Therefore $f$ is clearly a mapping $f :(\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2)) \rightarrow (\mathbb{R}, \mathcal{B}(\mathbb{R}))$
+		
+		It remains to show $\mathbb{E}[f|\mathcal{G}] = \mathbb{E}[f]$. By Doob-Dynkin $h(X)$ is still $\mathcal{G}$-measurable and $k(Y)$ is still $\sigma(Y)$-measurable
+		\begin{align*}
+			\mathbb{E}[h(X)k(Y)|\mathcal{G}] & =h(X) \mathbb{E}[k(Y)|\mathcal{G}] \tag{Doob-Dynkin}\\
+			& = h(X) \mathbb{E}[k(Y)] \tag{$\sigma (Y)\textrm{ indep. of }\mathcal{G}$} \\
+			& = \mathbb{E}[h(X)k(Y)] \\
+			& = \bar{f}(X) 
+		\end{align*}
+
+	\item 
+	$I_{A \times B} : (\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2)) \rightarrow (\{0, 1\}, \mathcal{P}(\{0, 1\}))\subset (\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+	
+	\begin{align*}
+		\mathbb{E}[I_{A\times B}|\mathcal{G}] & = \mathbb{E}[I_{A \times \Omega}|\mathcal{G}]\mathbb{E}[I_{\Omega \times B}] \tag{by independence}\\
+		& = \mathbb{E}[I_{A \times \Omega}]\mathbb{E}[I_{\Omega \times B}] \tag{$\mathcal{G}$-measurable}\\
+		& = \mathbb{E}[I_{A \times B}]
+	\end{align*}
+	Therefore $I_{A \times	B} \in \mathcal{H}$ by having the requisite properties. 
+	
+	\newpage
+	\item  $f_n(x, y) = \sum_{i = 0}^{2^nn - 1}\sum_{j = 0}^{2^nn-1} a_{i, j} I_{\{\frac{i}{2^n} < x \leq \frac{i + 1}{2^n}\}\cap \{\frac{j}{2^n} < y \leq \frac{j+1}{2^n}\}}(x, y)$ \newline
+	$\underset{n}{lim}f_n = f$, and $f_n \uparrow f$ if we set $a_{i,j} = f(\frac{i}{2^n}, \frac{j}{2^n})$.
+	
+	We need to show that $f_n \in \mathcal{H}$. Clearly $f_n: (\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2)) \rightarrow (\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+	\begin{align*}
+		& \mathbb{E}[f_n; G\times \Omega] \\
+		& = \int_\Omega\int_G \sum_{i = 0}^{2^nn - 1}\sum_{j = 0}^{2^nn-1} a_{i, j} I_{\{\frac{i}{2^n} < x \leq \frac{i + 1}{2^n}\}\cap \{\frac{j}{2^n} < y \leq \frac{j+1}{2^n}\}}(x, y) \mathbb{P}_x (dx) \mathbb{P}_y (dy) \\
+		& = \int_\Omega \sum_{j = 0}^{2^nn-1} I_{\{\frac{j}{2^n} < y \leq \frac{j+1}{2^n}\}} (y)\int_G \sum_{i = 0}^{2^nn - 1} a_{i, j} I_{\{\frac{i}{2^n} < x \leq \frac{i + 1}{2^n}\}}(x) \mathbb{P}_x (dx) \mathbb{P}_y (dy) \\
+		& = \int_\Omega \sum_{j = 0}^{2^nn-1} I_{\{\frac{j}{2^n} < y \leq \frac{j+1}{2^n}\}} (y)\int_\Omega \sum_{i = 0}^{2^nn - 1} a_{i, j} I_{\{\frac{i}{2^n} < x \leq \frac{i + 1}{2^n}\}}(x) \mathbb{P}_x (dx) \mathbb{P}_y (dy) \tag{$x \in G$}\\
+		& = \mathbb{E}[f_n;\Omega \times \Omega] \\
+		& = \mathbb{E}[f_n]
+	\end{align*}
+	Now we can show that $\mathbb{E}[f|\mathcal{G}] = \mathbb{E}[f]$ by taking limits of $f_n$.	
+	\begin{align*}
+		\mathbb{E}[f;G \times \Omega] & = \int_\Omega	\int_G \underset{n}{\lim}f_n (x, y) \mathbb{P}_x (dx) \mathbb{P}_y (dy) \\
+		& \myeq \underset{n}{\lim} \int_\Omega \int_G f_n (x, y) \mathbb{P}_x (dx) \mathbb{P}_y (dy) \\
+		& =  \underset{n}{\lim} \: \mathbb{E}[f_n] \\
+		& = \mathbb{E}[ \underset{n}{\lim} f_n] \\
+		& = \mathbb{E}[f]
+	\end{align*}
+	Therefore $f \in \mathcal{H}$
+	
+	\item We have shown that $\mathcal{H}$ satisfies the following conditions: 
+	\begin{enumerate} [label = \roman*)]
+		\item $\mathcal{H}$ is a vector space
+		\item The constant function $\textbf{1} \in \mathcal{H}$. Consider (d) and set $A = B = \Omega$
+		\item We have shown that if $f_n \in \mathcal{H}$ and $f_n \uparrow f$ where $f$ is bounded then $f \in \mathcal{H}$.
+		\end{enumerate}
+		We can apply monotone class theorem and every bounded $\mathcal{B}(\mathbb{R})/\mathcal{B}(\mathbb{R})$-measurable function is in $\mathcal{H}$. This is exactly the Borel functions which includes $\bar{f}$.
+	
+\end{enumerate}		
+\end{document}

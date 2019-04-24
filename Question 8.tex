@@ -1,0 +1,33 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsthm} 
+\usepackage{mdframed}
+\usepackage{parskip}
+
+\newcommand\myeq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily DCT}}}{=}}}
+
+ 
+\title{Stochastic Calculus in Finance\\
+		\large Exercise Sheet 5} 
+\author{Jayson Landman}
+\begin{document}
+	\section*{Question 8}
+	 
+	 Suppose $f(X_n) \not \xrightarrow{P} f(X)$. \newline Choose $\langle f(X_{n_k})\rangle_k$ such that $\mathbb{E}[|f(X_{n_k}) - f(X)|\wedge 1] > \epsilon \: \forall k$. \newline
+	If $\langle f(X_{n_{j_k}}) \rangle_j$ is a subsubsequence we cannot have $f(X_{n_{k_j}}) \rightarrow f(X)$ almost surely. \newline
+	Otherwise $|f(X_{n_{k_j}}) - f(X)| \wedge 1 \rightarrow 0$ and by DCT $\mathbb{E}[|f(X_{n_{k_j}}) - f(X)| \wedge 1] \rightarrow 0$. \newline
+	The contrapositive statement implies $f(X_n) \xrightarrow{P} f(X)$ if every subsequence $\langle f(X_{n_k}) \rangle_k$ of $\langle f(X_n) \rangle$ has a subsubsequence $\langle f(X_{n_{k_j}}) \rangle_j$ that converges to $f(X)$ almost surely.
+	 
+	Given that $X_n \xrightarrow{P} X$ we can fix a subsequence $\langle X_{n_k} \rangle_{k}$ of $\langle X_n \rangle_n$. \newline
+	It will be true that $X_{n_k} \xrightarrow{P} X$. \newline 
+	We may choose a subsubsequence $\langle X_{n_{k_j}} \rangle_j$ such that $\mathbb{E}[|X_{n_{k_j}} - X|\wedge 1] < 2^{-j}$ \newline
+	$\sum^\infty_{j =1}\mathbb{E}[|X_{}n_{k_j} - X|\wedge 1] < \infty$. Therefore $\sum^\infty_{j =1}|X_{}n_{k_j} - X|\wedge 1$ converges almost surely. \newline
+	$|X_{n_{k_j}} - X| \rightarrow 0$ almost surely.
+	
+	 
+	Now we know that the subsequences $\langle X_{n_k} \rangle_k$ of $\langle X_n \rangle$ have subsubsequences $\langle X_{n_{k_j}} \rangle_j$ that converge to $X$ almost surely. Similarly, $f(X_{n_{k_j}}) \rightarrow f(X)$ because $f$ is almost surely continuous at $X$. This proves the result.
+
+\end{document}
