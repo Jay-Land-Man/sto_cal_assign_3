@@ -1,0 +1,46 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{trees}
+
+\begin{document}
+	
+	\begin{titlepage}
+		\begin{center}
+				\line(5,0){400}\\
+				[0.5cm]
+			\huge{\bfseries AIFRM}\\
+			\line(5,0){400}\\
+			
+			\textsc{\Large \\ Stochastic Calculus \\ Assignment 3}
+			
+		\end{center}
+	
+	
+\vfill 
+\text{\bfseries{Authors}}\\
+\newline
+Alan Yeung (YNGALA002)\\
+Jason Landman\\
+Tino Muchabaiwa\\
+
+	\end{titlepage}	
+
+\newpage
+\section*{Execise sheet 6 Solutions}
+
+\subsection*{Question 10}
+
+\begin{align*}
+\mathbb{E}[(M_n - M_m)^2|\mathcal{F}_k] &=  \mathbb{E}[M_n^2 - 2M_nM_m +M_m^2|\mathcal{F}_k] \\ &=  \mathbb{E}[M_n^2|\mathcal{F}_k] - 2\mathbb{E}[M_nM_m|\mathcal{F}_k] + \mathbb{E}[M_m^2|\mathcal{F}_k] \\ &= 
+\mathbb{E}[M_n^2|\mathcal{F}_k] - 2\mathbb{E}[\mathbb{E}[M_nM_m|\mathcal{F}_m]|\mathcal{F}_k] + \mathbb{E}[(M_m^2|\mathcal{F}_k] \\&= 
+\mathbb{E}[M_n^2|\mathcal{F}_k] - 2\mathbb{E}[M_m\mathbb{E}[M_n|\mathcal{F}_m]|\mathcal{F}_k] + \mathbb{E}[(M_m^2|\mathcal{F}_k] \\&= 
+\mathbb{E}[M_n^2|\mathcal{F}_k] - 2\mathbb{E}[M_m^2|\mathcal{F}_m]|\mathcal{F}_k] + \mathbb{E}[(M_m^2|\mathcal{F}_k] \\&= 
+\mathbb{E}[M_n^2|\mathcal{F}_k] -  \mathbb{E}[(M_m^2|\mathcal{F}_k] \\&=
+\mathbb{E}[(M_n^2 - M_m^2|\mathcal{F}_k] 
+\end{align*}
+
+\end{document}

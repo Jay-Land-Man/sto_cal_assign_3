@@ -1,0 +1,250 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{trees}
+
+\begin{document}
+	
+	\begin{titlepage}
+		\begin{center}
+				\line(5,0){400}\\
+				[0.5cm]
+			\huge{\bfseries AIFRM}\\
+			\line(5,0){400}\\
+			
+			\textsc{\Large \\ Stochastic Calculus \\ Assignment 3}
+			
+		\end{center}
+	
+	
+\vfill 
+\text{\bfseries{Authors}}\\
+\newline
+Alan Yeung (YNGALA002)\\
+Jason Landman\\
+Tino Muchabaiwa\\
+
+	\end{titlepage}	
+
+\newpage
+\section*{Execise sheet 6 Solutions}
+
+\subsection*{Question 13}
+
+\begin{enumerate}[label=\alph*)]
+	\item 
+	$\mathcal{F}_0 = \sigma(\{\omega_1,\omega_2,\omega_3,\omega_4\})$ \\
+	$\mathcal{F}_1 = \sigma(\{\omega_1,\omega_2\},\{\omega_3,\omega_4\})$ \\
+	$\mathcal{F}_2 = \sigma(\{\omega_1\},\{\omega_2\},\{\omega_3\},\{\omega_4\})$
+	
+	\item 
+	$Z_0 = \mathbb{E}[Y|\mathcal{F}_0] = \frac{1}{9}\times12+\frac{2}{9}\times15+\frac{1}{6}\times16+\frac{1}{2}\times8 = \frac{34}{3}$ \\
+	$Z_1 = \mathbb{E}[Y|\mathcal{F}_1]$ \\
+	Since $\mathbb{E}[Y;\{\omega_1,\omega_2\}] = \frac{1}{9}\times12+\frac{2}{9}\times15 = \frac{14}{3}$ \\ 
+	therefore, $\mathbb{E}[Y|\{\omega_1,\omega_2\}] = \frac{14}{3}/(\frac{1}{9}+\frac{2}{9}) = 14$ \\
+	Since $\mathbb{E}[Y;\{\omega_3,\omega_4\}] = \frac{1}{6}\times16+\frac{1}{2}\times8 = \frac{20}{3}$ \\
+	therefore, $\mathbb{E}[Y|\{\omega_3,\omega_4\}] = \frac{20}{3}/(\frac{1}{6}+\frac{1}{2}) = 10$ \\
+	therefore, $Z_1 = 14I_{\{\omega_1,\omega_2\}} + 10I_{\{\omega_3,\omega_4\}}$ \\
+	$Z_2 = \mathbb{E}[Y|\mathcal{F}_2] = Y$ (since Y is $\mathcal{F}_2$-measurable)
+	
+	\item
+	If it can be shown that $\mathbb{E}[Z_{n+1}|\mathcal{F}_n] = Z_n$ for $n=0,1$, then $(Z_n)_{n\leq2}$ is a martingale. \\
+	By tower property, we know \\ $\mathbb{E}[Z_{n+1}|\mathcal{F}_n] = \mathbb{E}[\mathbb{E}[Y|\mathcal{F}_{n+1}]|\mathcal{F}_n] = \mathbb{E}[Y|\mathcal{F}_n] = Z_n$ for $n=0,1$ \\
+	therefore, $(Z_n)_{n\leq2}$ is a martingale.
+	
+	\item 
+	
+	The probabilities are calculated as follows: \\
+	$\mathbb{P}(\{\omega_1,\omega_2\}|\Omega) = \frac{1}{9} + \frac{2}{9} = \frac{1}{3}$ \\
+	$\mathbb{P}(\{\omega_3,\omega_4\}|\Omega) = \frac{1}{6} + \frac{1}{2} = \frac{2}{3}$ \\
+	$\mathbb{P}(\{\omega_1\}|\{\omega_1,\omega_2\}) = \frac{1}{9} / \frac{1}{3} = \frac{1}{3}$ \\
+	$\mathbb{P}(\{\omega_2\}|\{\omega_1,\omega_2\}) = \frac{2}{9} / \frac{1}{3} = \frac{2}{3}$ \\
+	$\mathbb{P}(\{\omega_3\}|\{\omega_3,\omega_4\}) = \frac{1}{6} / \frac{2}{3} = \frac{1}{4}$ \\
+	$\mathbb{P}(\{\omega_4\}|\{\omega_3,\omega_4\}) = \frac{1}{2} / \frac{2}{3} = \frac{3}{4}$
+	
+	Therefore, the tree diagram looks as follows:
+	% Set the overall layout of the tree
+	\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
+	\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+	
+	% Define styles for bags and leafs
+	\tikzstyle{bag} = [text width=4em, text centered]
+	\tikzstyle{end} = [circle, minimum width=3pt,fill, inner sep=0pt]
+	
+	% The sloped option gives rotated edge labels. Personally
+	% I find sloped labels a bit difficult to read. Remove the sloped options
+	% to get horizontal labels. 
+	\begin{tikzpicture}[grow=right, sloped]
+	\node[bag] {$\Omega$}
+	child {
+		node[bag] {$\{\omega_3,\omega_4\}$}        
+		child {
+			node[end, label=right:
+			{$\{\omega_4\}$}] {}
+			edge from parent
+			node[below] {$\frac{3}{4}$}
+		}
+		child {
+			node[end, label=right:
+			{$\{\omega_3\}$}] {}
+			edge from parent
+			node[above]  {$\frac{1}{4}$}
+		}
+		edge from parent 
+		node[below]  {$\frac{2}{3}$}
+	}
+	child {
+		node[bag] {$\{\omega_1,\omega_2\}$}        
+		child {
+			node[end, label=right:
+			{$\{\omega_2\}$}] {}
+			edge from parent
+			node[below]  {$\frac{2}{3}$}
+		}
+		child {
+			node[end, label=right:
+			{$\{\omega_1\}$}] {}
+			edge from parent
+			node[above]  {$\frac{1}{3}$}
+		}
+		edge from parent         
+		node[above]  {$\frac{1}{3}$}
+	};
+	\end{tikzpicture}
+	
+	\item 
+	If it can be shown that $\mathbb{E}[X_{n+1}|\mathcal{F}_n] = X_n$ for $n=0,1$, then $(X_n)_{n\leq2}$ is a martingale. \\
+	
+	Now,
+	\[
+	\mathbb{E}[X_2|\mathcal{F}_1](\omega) = 
+	\begin{cases}
+	\frac{1}{3}\times36+\frac{2}{3}\times9=18 & \text{if } \omega\in \{\omega_1,\omega_2\}\\
+	\frac{1}{4}\times12+\frac{3}{4}\times8=9 & \text{if } \omega\in \{\omega_3,\omega_4\}
+	\end{cases}
+	\]
+	So, $\mathbb{E}[X_2|\mathcal{F}_1](\omega) = X_1(\omega)$ for $\omega \in \Omega$ \\
+	
+	Similarly, \\
+	$\mathbb{E}[X_1|\mathcal{F}_0](\omega) = \frac{1}{3}\times18+\frac{2}{3}\times9=12$ if $\omega\in \{\omega_1,\omega_2,\omega_3,\omega_4\}$\\
+	So, $\mathbb{E}[X_1|\mathcal{F}_0](\omega) = X_0(\omega)$ for $\omega \in \Omega$ \\
+	
+	Therefore, $(X_n)_{n\leq2}$ is a martingale.
+	
+	\item 
+	$\mathbb{E}[X_1^2|\mathcal{F}_0](\omega) = \frac{1}{3}\times18^2+\frac{2}{3}\times9^2=162$ \\
+	$X_0^2(\omega) = 12^2 = 144$ \\
+	Therefore, $\mathbb{E}[X_1^2|\mathcal{F}_0](\omega) \geq X_0^2(\omega)$.\\
+	
+	Now,
+	\[
+	\mathbb{E}[X_2^2|\mathcal{F}_1](\omega) = 
+	\begin{cases}
+	\frac{1}{3}\times36^2+\frac{2}{3}\times9^2=486 & \text{if } \omega\in \{\omega_1,\omega_2\}\\
+	\frac{1}{4}\times12^2+\frac{3}{4}\times8^2=84 & \text{if } \omega\in \{\omega_3,\omega_4\}
+	\end{cases}
+	\]
+	
+	\[
+	X_1^2(\omega) = 
+	\begin{cases}
+	18^2=324 & \text{if } \omega\in \{\omega_1,\omega_2\}\\
+	9^2=81 & \text{if } \omega\in \{\omega_3,\omega_4\}
+	\end{cases}
+	\]
+	Therefore, $\mathbb{E}[X_2^2|\mathcal{F}_1](\omega) \geq X_1^2(\omega)$. \\
+	Therefore, $\mathbb{E}[X_n^2|\mathcal{F}_{n-1}](\omega) \geq X_{n-1}^2(\omega)$ for $n=1,2$. \\
+	Therefore, $(X_n^2)_n$ is a submartingale.
+	
+	\item 
+	The tree diagram for $(X_n^2)_n$ looks as follows:
+	% Set the overall layout of the tree
+	\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
+	\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+	
+	% Define styles for bags and leafs
+	\tikzstyle{bag} = [text width=5em, text centered]
+	\tikzstyle{end} = [circle, minimum width=3pt,fill, inner sep=0pt]
+	
+	% The sloped option gives rotated edge labels. Personally
+	% I find sloped labels a bit difficult to read. Remove the sloped options
+	% to get horizontal labels. 
+	\begin{tikzpicture}[grow=right, sloped]
+	\node[bag] {$X_0^2=144$}
+	child {
+		node[bag] {$X_1^2=81$}        
+		child {
+			node[end, label=right:
+			{$X_2^2=64$}] {}
+			edge from parent
+			node[below] {$\omega_4$}
+		}
+		child {
+			node[end, label=right:
+			{$X_2^2=256$}] {}
+			edge from parent
+			node[above]  {$\omega_3$}
+		}
+		edge from parent 
+		node[below]  {$\{\omega_3,\omega_4\}$}
+	}
+	child {
+		node[bag] {$X_1^2=324$}        
+		child {
+			node[end, label=right:
+			{$X_2^2=225$}] {}
+			edge from parent
+			node[below]  {$\omega_2$}
+		}
+		child {
+			node[end, label=right:
+			{$X_2^2=144$}] {}
+			edge from parent
+			node[above]  {$\omega_1$}
+		}
+		edge from parent         
+		node[above]  {$\{\omega_1,\omega_2\}$}
+	};
+	\end{tikzpicture}
+	
+	We can decompose $X_n^2$ as follows:\\
+	$X_n^2=X_0^2+M_n+A_n$\\
+	where $A_0=0$ and $A_n = A_{n-1}+\mathbb{E}[X_n^2|\mathcal{F}_{n-1}]-X_{n-1}^2$\\
+	
+	Therefore,\\
+	$A_1 = 0+162-144=18$\\
+	$A_2 = A_1 +\mathbb{E}[X_2^2|\mathcal{F}_1]-X_1^2$\\
+	\[
+	A_2 = 
+	\begin{cases}
+	18+486-324=180 & \text{if } \omega\in \{\omega_1,\omega_2\}\\
+	18+84-81=21 & \text{if } \omega\in \{\omega_3,\omega_4\}
+	\end{cases}
+	\]
+	
+	Since $M_n=X_n^2-X_0^2-A_n$ and $M_0=0$, it follows that\\
+	$M_1=X_1^2-X_0^2-A_1$
+	\[
+	M_1 = 
+	\begin{cases}
+	324-144-18=162 & \text{if } \omega\in \{\omega_1,\omega_2\}\\
+	81-144-18=-81 & \text{if } \omega\in \{\omega_3,\omega_4\}
+	\end{cases}
+	\]
+	
+	and $M_2 = X_2^2-X_0^2-A_2$
+	\[
+	M_2 = 
+	\begin{cases}
+	144-144-180=-180 & \text{if } \omega = \omega_1\\
+	225-144-180=-99 & \text{if } \omega = \omega_2 \\
+	256-144-21=91 & \text{if } \omega = \omega_3 \\
+	64-144-21=-101 & \text{if } \omega = \omega_4 \\
+	\end{cases}
+	\]
+\end{enumerate}
+
+\end{document}
