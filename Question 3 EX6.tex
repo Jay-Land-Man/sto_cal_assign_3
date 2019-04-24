@@ -1,0 +1,85 @@
+\documentclass[answers]{exam}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 3}
+\date{April 2019}
+
+\begin{document}
+	
+
+\section*{Exercise Sheet 6}
+
+\subsection*{Question 3}
+\begin{parts}
+	
+	\part
+	
+	Determine the risk-free interest rate, given that there is no arbitrage.
+	
+	\begin{solution}
+		
+		$$\begin{pmatrix} 
+		1 \\
+		2.9\\
+		1.1  
+		\end{pmatrix} = \frac{1}{1+r} \begin{pmatrix} 
+		1+r & 1+r \\
+		3 & 4 \\
+		2 & 1
+		\end{pmatrix} \begin{pmatrix} 
+		q_1 \\
+		q_2 
+		\end{pmatrix}$$
+		
+		Then
+		
+		\begin{align*}
+		1 &= q_1 +q_2\\
+		2.9 &= \frac{3}{1+r}q_1 +\frac{4}{1+r}q_2\\
+		1.1 &= \frac{2}{1+r}q_1 +\frac{1}{1+r}q_2
+		\end{align*}
+		
+		Hence 
+		
+		\begin{align*}
+		r &=\frac{1}{4}\\
+		q_1 &= \frac{3}{8}\\
+		q_2 &= \frac{5}{8}
+		\end{align*} 
+		
+	\end{solution}
+	
+	\part
+	
+	Is the market complete?
+	
+	\begin{solution}
+		
+		Yes, there exist a unique equivalent martingale measure.	
+		
+	\end{solution}
+	
+	\part
+	
+	A contingent claim pays out 2.00 in state $\omega_1$ and 3.00 in state $\omega_2$. What is the $t = 0$ value of this claim?
+	
+	\begin{solution}
+		
+		The value of the claim is 
+		
+		$$\frac{2}{1+r}q_1 + \frac{3}{1+r}q_2 = \frac{21}{10}$$
+		
+	\end{solution}
+	
+	
+\end{parts} 
+
+
+\end{document}

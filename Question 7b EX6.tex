@@ -1,0 +1,38 @@
+\documentclass[answers]{exam}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 3}
+\date{April 2019}
+
+\begin{document}
+	
+
+\section*{Exercise Sheet 6}
+
+\subsection*{Question 7b}
+
+Show that if $A \in \mathcal{F}_\sigma$ then $A \cap \{\sigma \leq \tau\} \in \mathcal{F}_{\sigma \land \tau}$
+
+\begin{solution}
+	
+	\begin{align*}
+	A \cap \{\sigma \leq \tau \} \cap \{\sigma \land \tau \leq t \} 
+	&= A \cap \{\sigma \leq \tau \} \cap (\{t \leq \tau \} \cup \{\tau < t \} )\\
+	&= A \cap \{ \sigma \leq t\} \cap (\{ \sigma \leq t \leq \tau\} \cup (\{ \sigma < \tau < t\}) \\
+	&=A \cap \{ \sigma \leq t\} \cap \{ \sigma \land t \leq \tau \land t \}
+	\end{align*}
+	
+	Since $\{ \sigma \leq t\}$ is $ \in \mathcal{F}_t$ and $\{ \sigma \land t \leq \tau \land t \}$ is $ \in \mathcal{F}_t$. Then $\{ \sigma \leq t\} \cap \{ \sigma \land t \leq \tau \land t \} = \{\sigma \leq \tau \} \cap \{\sigma \land \tau \leq t \}$ is $ \in \mathcal{F}_t  $. Hence $\{\sigma \leq \tau \},\{\sigma = \tau \} \in \mathcal{F}_{\sigma \land \tau}$ 
+	
+\end{solution}
+ 
+
+
+\end{document}

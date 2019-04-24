@@ -1,0 +1,117 @@
+\documentclass[answers]{exam}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage[utf8]{inputenc}
+
+\title{Assignment 3}
+\date{April 2019}
+
+\begin{document}
+	
+
+\section*{Exercise Sheet 6}
+
+\subsection*{Question 5}
+
+\begin{parts}
+	
+	\part
+	
+	Show that $X$ is not attainable.
+	
+	\begin{solution}
+		
+		If X is attainable, then  there exist $V_t(\theta)$ such that $V_t(\theta)=  X_t$. Hence $\bar{V}_t(\theta)=  \bar{X}_t$ 
+		
+		$$\mathbb{Q}(\omega_{k}) = \mathbb{E}_\mathbb{Q}[\bar{X}]= \mathbb{E}_\mathbb{Q}[\bar{V}_T(\theta)]= \bar{V}_0(\theta)$$
+		
+		$$\mathbb{Q'}(\omega_{k}) = \mathbb{E}_\mathbb{Q'}[\bar{X}]= \mathbb{E}_\mathbb{Q'}[\bar{V}_T(\theta)]= \bar{V}_0(\theta)$$
+		
+		but
+		
+		$$\mathbb{Q}(\omega_{k}) \neq \mathbb{Q'}(\omega_{k})$$
+		
+		Therefore under no abitrage, there is no portfolio $V(\theta)$ which attains X 
+		
+	\end{solution}
+	
+	\part
+	\renewcommand{\labelenumi}{\roman{enumi}}
+	\begin{enumerate}
+		\item 
+		
+		Show that there is a vector $\xi = (\xi_1,...,\xi_K)$ with property that $\xi.\bar{V}_T(\theta) = 0$ for each trading strategy , but has $\xi.X > 0$
+		
+		\begin{solution}
+			
+			Define $L =  \{\bar{V}_T(\theta):\text{all } \theta\}$ and $K = \{\bar{X}\}$ then $K\cap L =\emptyset$ by (a). By the hyperplane separation theorem, there exists $\xi \in \mathbb{R}^n$ such that.  
+			$$\xi.\bar{V}_T(\theta) = 0$$
+			$$\xi.\bar{X} > 0$$
+			hence $\xi.X > 0$ by definition of $X$
+			
+		\end{solution}
+		
+		\item
+		
+		Show that $\mathbb{Q(\omega_k)} = q'_k $ defines a probability measure $\Omega$ which is equivalent to $\mathbb{P}$
+		
+		\begin{solution}
+			
+			\begin{align*}	
+			q'.\bar{V}_T(\theta) &= (q + \lambda\xi)\bar{V}_T(\theta) \text{   (but } \xi. \bar{V}_T(\theta) = 0) \\
+			q'.\bar{V}_T(\theta) &= q.\bar{V}_T(\theta)	
+			\end{align*}	
+			
+			If $q'_k = 1, \text{then } q'_j = 0 \text{ for all } j \neq k, \text{take } \bar{V}_T(\theta)=1$ for all $\omega$. Then $q_k = 1 \text{ and } q_j= 0 \text{ for all } j \neq k $. Thus $\mathbb{Q'} \text{ is equivalent to } \mathbb{Q} \text{ and hence it is also equivalent to } \mathbb{P} . $
+			
+			
+		\end{solution}
+		
+		\item 
+		Show that $\mathbb{Q'}$ is in fact a risk-neutral measure.
+		
+		\begin{solution}
+			
+			\begin{align*}
+			\mathbb{E}_\mathbb{Q'}[\bar{V}_T(\theta)]
+			&=\sum_{k=1}^{K}\mathbb{Q'}(\omega_{k}) \bar{V}_T(\omega_k)\\
+			&=\sum_{k=1}^{K}q'_k\bar{V}_T(\omega_k)\\
+			&=\sum_{k=1}^{K}q_k\bar{V}_T(\omega_k)+ \lambda \sum_{k=1}^{K} \xi_k \bar{V}_T(\omega_k)  \\
+			&=\sum_{k=1}^{K}\mathbb{Q}(\omega_{k}) \bar{V}_T(\omega_k) + \lambda \sum_{k=1}^{K} \xi_k \bar{V}_T(\omega_k)\\
+			&=\mathbb{E}_\mathbb{Q}[\bar{V}_T(\theta)] + \lambda \xi. \bar{V}_T(\theta)
+			\text{   (but } \xi. \bar{V}_T(\theta) = 0)\\
+			&=\mathbb{E}_\mathbb{Q}[\bar{V}_T(\theta)]\\
+			&=\bar{V}_0(\theta)
+			\end{align*}
+			
+			Thus $\mathbb{Q'}$ is in fact a risk-neutral measure.
+			
+		\end{solution}
+		
+		\item 
+		Show that $\mathbb{E}_\mathbb{Q'}[\bar{X}] \neq \mathbb{E}_\mathbb{Q}[\bar{X}]$
+		
+		
+		\begin{solution}
+			
+			\begin{align*}
+			\mathbb{E}_\mathbb{Q'}[\bar{X}]
+			&=\sum_{k=1}^{K}\mathbb{Q'}(\omega_{k})[\bar{X}]\\
+			&=\sum_{k=1}^{K}q_k\bar{X} + \lambda \sum_{k=1}^{K} \xi_k \bar{X}  \\
+			&=\sum_{k=1}^{K}\mathbb{Q}(\omega_{k})\bar{X} + \lambda \sum_{k=1}^{K} \xi_k \bar{X}  \\
+			&=\mathbb{E}_\mathbb{Q}[\bar{X}] + \lambda \xi. \bar{X} \text{ (but } \xi. \bar{X} >0 )\\
+			&\neq \mathbb{E}_\mathbb{Q}[\bar{X}] 
+			\end{align*}
+			
+		\end{solution}
+		
+	\end{enumerate}
+\end{parts}
+
+
+\end{document}
